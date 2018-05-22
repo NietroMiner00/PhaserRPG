@@ -13,6 +13,7 @@ function preload() {
 }
 
 var char;
+var floor;
 
 function create () {
 
@@ -23,7 +24,9 @@ function create () {
     background.scale.setTo(1.5);
     game.stage.backgroundColor = "#c1ffe5";
     
+    game.physics.startSystem(Phaser.Physics.ARCADE);
     game.physics.arcade.gravity.y = 200;
+
 
     char = game.add.sprite(20,20,'hoch');
     char.scale.setTo(0.25);
@@ -31,18 +34,21 @@ function create () {
     game.physics.enable(char,Phaser.Physics.ARCADE);
     char.body.collideWorldBounds = true;
 
-    var floor = game.add.sprite(0,500,'Boden');
+    floor = game.add.sprite(0,500,'Boden');
     floor.scale.y = 0.5;
     floor.scale.x = 1;
     floor.enableBody = true;
-
-    game.world.moveDown(floor);
+    game.physics.enable(floor,Phaser.Physics.ARCADE);
+    floor.body.immovable = true;
+    floor.body.collideWorldBounds = true;
+    floor.body.setSize(1024,200,0,0);
 } 
 
 function update() {
-    
+    game.physics.arcade.collide(char,floor);
 }
 
 function render () {
-    
+    //game.debug.body(char);
+    //game.debug.body(floor);
 }
