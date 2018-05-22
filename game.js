@@ -6,6 +6,7 @@ function preload() {
     game.load.image('runter','Assets/Wuerfelunten.png');
     game.load.image('links','Assets/Wuerfellinks.png');
     game.load.image('rechts','Assets/Wuerfelrechts.png');
+    game.load.audio("music", "Assets/Musik.mp3");
     game.load.image('Boden', 'Assets/Boden.png');
     game.load.image('himmel','Assets/background.png');
 
@@ -14,6 +15,9 @@ function preload() {
 var char;
 
 function create () {
+
+    var audio = game.add.audio("music");
+    audio.play();
     var background = game.add.sprite(game.world.centerX,game.world.centerY,'himmel');
     background.anchor.setTo(0.5);
     background.scale.setTo(1.5);
