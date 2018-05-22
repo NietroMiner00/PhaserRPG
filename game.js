@@ -14,7 +14,7 @@ function preload() {
 
 
 function create () {
-
+    game.add.sprite(20,20,'hoch');
 } 
 
 function update() {
