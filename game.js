@@ -14,18 +14,30 @@ function preload() {
 
 var char;
 var floor;
+var upKey;
+var downKey;
+var leftKey;
+var rightKey;
 
 function create () {
 
+    game.world.setBounds(0,0,2048,600);
+
     var audio = game.add.audio("music");
     audio.play();
-    var background = game.add.sprite(game.world.centerX,game.world.centerY,'himmel');
+    var background = game.add.tileSprite(game.world.centerX,game.world.centerY,2048,600,'himmel');
     background.anchor.setTo(0.5);
     background.scale.setTo(1.5);
     game.stage.backgroundColor = "#c1ffe5";
     
+    upKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+    downKey = game.input.keyboard.addKey(Phaser.Keyboard.S);
+    leftKey = game.input.keyboard.addKey(Phaser.Keyboard.A);
+    rightKey = game.input.keyboard.addKey(Phaser.Keyboard.D);
+
+
     game.physics.startSystem(Phaser.Physics.ARCADE);
-    game.physics.arcade.gravity.y = 200;
+    game.physics.arcade.gravity.y = 500;
 
 
     char = game.add.sprite(20,20,'hoch');
@@ -33,19 +45,25 @@ function create () {
     char.enableBody = true;
     game.physics.enable(char,Phaser.Physics.ARCADE);
     char.body.collideWorldBounds = true;
+    game.camera.follow(char,Phaser.Camera.FOLLOW_LOCKON);
 
-    floor = game.add.sprite(0,500,'Boden');
-    floor.scale.y = 0.5;
-    floor.scale.x = 1;
-    floor.enableBody = true;
+    floor = game.add.tileSprite(0,500,2048,100,'Boden');
     game.physics.enable(floor,Phaser.Physics.ARCADE);
+    floor.enableBody = true;
     floor.body.immovable = true;
-    floor.body.collideWorldBounds = true;
-    floor.body.setSize(1024,200,0,0);
+    floor.body.allowGravity = false;
 } 
 
 function update() {
+
     game.physics.arcade.collide(char,floor);
+
+    char.body.velocity.x = 0;
+    if(upKey.isDown&&char.body.touching.down==true){
+        char.body.velocity.y = -500;
+    }
+    if(leftKey.isDown) char.body.velocity.x = -300;
+    if(rightKey.isDown) char.body.velocity.x = 300;
 }
 
 function render () {
