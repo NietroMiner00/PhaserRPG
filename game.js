@@ -11,10 +11,11 @@ function preload() {
 
 }
 
-
+var char;
 
 function create () {
-    game.add.sprite(20,20,'hoch');
+    char = game.add.sprite(20,20,'hoch');
+    char.scale.setTo(0.25);
 } 
 
 function update() {
