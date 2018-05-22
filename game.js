@@ -18,14 +18,21 @@ function create () {
     background.anchor.setTo(0.5);
     background.scale.setTo(1.5);
     game.stage.backgroundColor = "#c1ffe5";
-
+    
+    game.physics.arcade.gravity.y = 200;
 
     char = game.add.sprite(20,20,'hoch');
     char.scale.setTo(0.25);
+    char.enableBody = true;
+    game.physics.enable(char,Phaser.Physics.ARCADE);
+    char.body.collideWorldBounds = true;
 
     var floor = game.add.sprite(0,500,'Boden');
-    floor.scale.setTo(0.5);
+    floor.scale.y = 0.5;
     floor.scale.x = 1;
+    floor.enableBody = true;
+
+    game.world.moveDown(floor);
 } 
 
 function update() {
