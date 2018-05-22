@@ -13,6 +13,10 @@ function preload() {
 }
 
 var char;
+var upKey;
+var downKey;
+var leftKey;
+var rightKey;
 
 function create () {
 
@@ -23,7 +27,7 @@ function create () {
     background.scale.setTo(1.5);
     game.stage.backgroundColor = "#c1ffe5";
     
-    game.physics.arcade.gravity.y = 200;
+    game.physics.arcade.gravity.y = 500;
 
     char = game.add.sprite(20,20,'hoch');
     char.scale.setTo(0.25);
@@ -37,10 +41,20 @@ function create () {
     floor.enableBody = true;
 
     game.world.moveDown(floor);
+
+    upKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+    downKey = game.input.keyboard.addKey(Phaser.Keyboard.S);
+    leftKey = game.input.keyboard.addKey(Phaser.Keyboard.A);
+    rightKey = game.input.keyboard.addKey(Phaser.Keyboard.D);
 } 
 
 function update() {
-    
+    char.body.velocity.x = 0;
+    if(upKey.isDown&&char.body.onFloor()){
+        char.body.velocity.y = -500;
+    }
+    if(leftKey.isDown) char.body.velocity.x = -300;
+    if(rightKey.isDown) char.body.velocity.x = 300;
 }
 
 function render () {
