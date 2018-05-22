@@ -6,22 +6,26 @@ function preload() {
     game.load.image('runter','Assets/Wuerfelunten.png');
     game.load.image('links','Assets/Wuerfellinks.png');
     game.load.image('rechts','Assets/Wuerfelrechts.png');
-    game.load.image("Boden", "Assets/Boden.png");
+    game.load.image('Boden', 'Assets/Boden.png');
+    game.load.image('himmel','Assets/background.png');
 
 }
 
 var char;
 
 function create () {
+    var background = game.add.sprite(game.world.centerX,game.world.centerY,'himmel');
+    background.anchor.setTo(0.5);
+    background.scale.setTo(1.5);
+    game.stage.backgroundColor = "#c1ffe5";
+
+
     char = game.add.sprite(20,20,'hoch');
     char.scale.setTo(0.25);
 
-    floor = game.add.sprite(50,50,'Boden');
-    var sprite2 = game.add.sprite(0, 0, 'Boden').alignTo(floor, Phaser.RIGHT_CENTER, 16);
-    var sprite3 = game.add.sprite(0, 0, 'Boden').alignTo(sprite2, Phaser.RIGHT_CENTER, 16);
-    var sprite4 = game.add.sprite(0, 0, 'Boden').alignTo(sprite3, Phaser.RIGHT_CENTER, 16);
-    var sprite5 = game.add.sprite(0, 0, 'Boden').alignTo(sprite4, Phaser.RIGHT_CENTER, 16);
-    var sprite6 = game.add.sprite(0, 0, 'Boden').alignTo(sprite5, Phaser.RIGHT_CENTER, 16);
+    var floor = game.add.sprite(0,500,'Boden');
+    floor.scale.setTo(0.5);
+    floor.scale.x = 1;
 } 
 
 function update() {
