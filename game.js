@@ -59,11 +59,17 @@ function update() {
     game.physics.arcade.collide(char,floor);
 
     char.body.velocity.x = 0;
-    if(upKey.isDown&&char.body.touching.down==true){
+    if(upKey.isDown&&char.body.touching.down){
         char.body.velocity.y = -500;
     }
-    if(leftKey.isDown) char.body.velocity.x = -300;
-    if(rightKey.isDown) char.body.velocity.x = 300;
+    if(leftKey.isDown){
+        char.body.velocity.x = -300;
+        char.loadTexture('links');
+    } 
+    if(rightKey.isDown){
+        char.body.velocity.x = 300;
+        char.loadTexture('rechts');
+    }
 }
 
 function render () {
