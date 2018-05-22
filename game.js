@@ -7,12 +7,17 @@ function preload() {
     game.load.image('links','Assets/Wuerfellinks.png');
     game.load.image('rechts','Assets/Wuerfelrechts.png');
     game.load.image("Boden", "Assets/Boden.png");
+    game.load.audio("music", "Assets/Musik.mp3");
 
 }
 
 var char;
 
 function create () {
+
+    var audio = game.add.audio("music");
+    audio.play();
+
     char = game.add.sprite(20,20,'hoch');
     char.scale.setTo(0.25);
 
@@ -22,7 +27,7 @@ function create () {
     var sprite4 = game.add.sprite(0, 0, 'Boden').alignTo(sprite3, Phaser.RIGHT_CENTER, 16);
     var sprite5 = game.add.sprite(0, 0, 'Boden').alignTo(sprite4, Phaser.RIGHT_CENTER, 16);
     var sprite6 = game.add.sprite(0, 0, 'Boden').alignTo(sprite5, Phaser.RIGHT_CENTER, 16);
-} 
+}
 
 function update() {
     
